@@ -20,6 +20,23 @@
 		<version>6.0.32</version>
 		<scope>provided</scope>
 	</dependency>
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-server</artifactId>
+		<version>1.10</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-servlet</artifactId>
+		<version>1.10</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.servicemix.specs</groupId>
+		<artifactId>
+			org.apache.servicemix.specs.jsr311-api-1.1.1
+		</artifactId>
+		<version>1.8.0</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>cody</finalName>
