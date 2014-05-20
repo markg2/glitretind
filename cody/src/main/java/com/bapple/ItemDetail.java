@@ -41,12 +41,12 @@ public class ItemDetail {
 	
 	private String getDetail(final String dbItemId) {
 		return "{" +
-				"name : \"Das Parka\", " +
-				"itemId: \"84102\", " +
-				"state: \"own|want\", " +
-				"privacy: \"public|private\", " +
-				"manufacturer: \"patagonia.com\", " +
-				"notes: \"orange, medium, purchased directly from Patagonia\", " +
-				"tags: [\"climbing\", \"insulation\"]}";
+				"\"name\": \"Das Parka\", " +
+				"\"itemId\": \"84102\", " +
+				"\"state\": \"own|want\", " +
+				"\"privacy\": \"public|private\", " +
+				"\"manufacturer\": \"patagonia.com\", " +
+				"\"notes\": \"orange, medium, purchased directly from Patagonia\", " +
+				"\"tags\": [\"climbing\", \"insulation\"]}";
 	}
 }
