@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ItemListTest {
- 
+	private static final String DATABASE_NAME = "rextest";
+	
     private Collection<String> collection;
  
     @BeforeClass
@@ -48,9 +49,9 @@ public class ItemListTest {
         System.out.println("@Test - testCreateCollection");
         try {
 			MongoClient mongoClient = new MongoClient( "localhost" );
-			DB db = mongoClient.getDB( "rex2" );
+			DB db = mongoClient.getDB(DATABASE_NAME);
 			db.dropDatabase();
-			db = mongoClient.getDB( "rex2" );
+			db = mongoClient.getDB(DATABASE_NAME);
 			// boolean auth = db.authenticate(myUserName, myPassword);
 			Set<String> colls = db.getCollectionNames();
 			for (String s : colls) {
