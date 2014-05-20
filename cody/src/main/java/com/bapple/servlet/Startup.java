@@ -1,4 +1,4 @@
-package com.bapple;
+package com.bapple.servlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

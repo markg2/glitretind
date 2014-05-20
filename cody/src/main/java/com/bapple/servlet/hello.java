@@ -1,4 +1,4 @@
-package com.bapple;
+package com.bapple.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
