@@ -57,6 +57,6 @@ public class ItemDetail {
 		BasicDBObject objToFind = new BasicDBObject("itemId", dbItemId);
 		DBObject obj = coll.findOne(objToFind);
 		
-		return obj.toString();
+		return obj != null ? obj.toString() : "{}";
 	}
 }

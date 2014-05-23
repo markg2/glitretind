@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import com.bapple.ConnectionManagerFactory;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 /**
  * Servlet implementation class Startup
@@ -16,6 +17,7 @@ import com.mongodb.MongoClient;
 public class Startup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private static final String DATABASE_URI = "mongodb://dbrex:lego2014@ds045679.mongolab.com:45679/rex";
 	private static final String DATABASE_NAME = "rex";
 
        
@@ -37,7 +39,8 @@ public class Startup extends HttpServlet {
 		
 		MongoClient mongoClient = null;
 		try {
-			mongoClient = new MongoClient( "localhost" );
+        	MongoClientURI uri = new MongoClientURI(DATABASE_URI);
+			mongoClient = new MongoClient(uri);
 		} catch (UnknownHostException e) {
 			// TODO log the error.  Jay - log4j I assume??
 			// logIt()

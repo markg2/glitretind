@@ -11,11 +11,14 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+
 import java.util.List;
 import java.util.Set;
 
 public class ItemListTest {
-	private static final String DATABASE_NAME = "rextest";
+	private static final String DATABASE_URI = "mongodb://dbrex:lego2014@ds045679.mongolab.com:45679/rex";
+	private static final String DATABASE_NAME = "rex";
 	
     private Collection<String> collection;
  
@@ -48,16 +51,16 @@ public class ItemListTest {
         assertTrue(collection.isEmpty());
         System.out.println("@Test - testCreateCollection");
         try {
-			MongoClient mongoClient = new MongoClient( "localhost" );
+        	MongoClientURI uri = new MongoClientURI(DATABASE_URI);
+			MongoClient mongoClient = new MongoClient(uri);
 			DB db = mongoClient.getDB(DATABASE_NAME);
-			db.dropDatabase();
-			db = mongoClient.getDB(DATABASE_NAME);
+			
 			// boolean auth = db.authenticate(myUserName, myPassword);
 			Set<String> colls = db.getCollectionNames();
 			for (String s : colls) {
 			    System.out.println(s);
 			}
-			DBCollection coll = db.getCollection("itemBook");
+			DBCollection coll = db.getCollection("item");
 			if (coll.count() > 0)
 				coll.drop();
 			coll = db.getCollection("item");

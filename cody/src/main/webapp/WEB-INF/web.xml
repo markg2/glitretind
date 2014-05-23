@@ -8,7 +8,7 @@
   	<servlet-name>hello</servlet-name>
   	<display-name>hello</display-name>
   	<description></description>
-  	<servlet-class>com.bapple.hello</servlet-class>
+  	<servlet-class>com.bapple.servlet.hello</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>JAX-RS Servlet</servlet-name>
