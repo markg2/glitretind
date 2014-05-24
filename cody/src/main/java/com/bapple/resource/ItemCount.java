@@ -1,4 +1,4 @@
-package com.bapple;
+package com.bapple.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

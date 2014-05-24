@@ -29,7 +29,7 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>JAX-RS Servlet</servlet-name>
-  	<url-pattern>/rest/*</url-pattern>
+  	<url-pattern>/resource/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>Startup</servlet-name>
