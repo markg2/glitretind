@@ -75,32 +75,32 @@ public class ItemListTest {
  
     private void populateCollectionWithBooks(DBCollection coll) {
 		// Owned: series A
-		coll.insert(populateBookDoc("Once Upon a Kiss", "0515133868", "own", "", "5376e5306283df5bc1fe74d9", "Nora Roberts", "a", "2002", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("Once Upon a Dream", "051512947X", "own", "", "5376e5306283df5bc1fe74d9", "Nora Roberts", "a", "2000", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("Once Upon a Star", "0515127000", "own", "", "5376e5306283df5bc1fe74d9", "Nora Roberts", "a", "1999", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("Once Upon a Castle", "0515122416", "own", "", "5376e5306283df5bc1fe74d9", "Nora Roberts", "a", "1998", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Once Upon a Kiss", "0515133868", "own", "", "5376e5306283df5bc1fe74d9", "Nora Roberts", "OnceUponA", "2002", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Once Upon a Dream", "051512947X", "own", "", "5376e5306283df5bc1fe74d9", "Nora Roberts", "OnceUponA", "2000", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Once Upon a Star", "0515127000", "own", "", "5376e5306283df5bc1fe74d9", "Nora Roberts", "OnceUponA", "1999", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Once Upon a Castle", "0515122416", "own", "", "5376e5306283df5bc1fe74d9", "Nora Roberts", "OnceUponA", "1998", "public", "Jove", "pocket"));
 
 		// Wanted: series A
-		coll.insert(populateBookDoc("Once Upon A Midnight", "0515136190", "want", "false", "5376e5306283df5bc1fe74d9", "Nora Roberts", "a", "2003", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("Once Upon A Rose", "0515131660", "want", "false", "5376e5306283df5bc1fe74d9", "Nora Roberts", "a", "2001", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Once Upon A Midnight", "0515136190", "want", "false", "5376e5306283df5bc1fe74d9", "Nora Roberts", "OnceUponA", "2003", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Once Upon A Rose", "0515131660", "want", "false", "5376e5306283df5bc1fe74d9", "Nora Roberts", "OnceUponA", "2001", "public", "Jove", "pocket"));
 		
 		// Owned: series B
-		coll.insert(populateBookDoc("Silent Night", "0515123854", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "1998", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("Out of this World", "0515131091", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "2001", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("Bump in the Night", "0515141178", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "2006", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("Suite 606", "978-0425224441", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "2008", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("The Other Side", "978-0515148671", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "2010", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("The Unquiet", "978-0515149982", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "2011", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Silent Night", "0515123854", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "1998", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Out of this World", "0515131091", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "2001", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Bump in the Night", "0515141178", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "2006", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Suite 606", "978-0425224441", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "2008", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("The Other Side", "978-0515148671", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "2010", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("The Unquiet", "978-0515149982", "own", "", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "2011", "public", "Jove", "pocket"));
 
 		// Wanted: series B
-		coll.insert(populateBookDoc("Dead of Night", "978-0515143676", "want", "false", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "2007", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("The Lost", "978-0515147186", "want", "false", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "2009", "public", "Jove", "pocket"));
-		coll.insert(populateBookDoc("Mirror Mirror", "978-0515154078", "want", "false", "5376e5306283df5bc1fe74d9", "JD Robb", "b", "2013", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Dead of Night", "978-0515143676", "want", "false", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "2007", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("The Lost", "978-0515147186", "want", "false", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "2009", "public", "Jove", "pocket"));
+		coll.insert(populateBookDoc("Mirror Mirror", "978-0515154078", "want", "false", "5376e5306283df5bc1fe74d9", "JD Robb", "InDeath", "2013", "public", "Jove", "pocket"));
     	
     }
     
     private BasicDBObject populateBookDoc(String name, String itemId, String state, String found,
-    		String user, String author, String series, String sequence,
+    		String user, String author, String collection, String sequence,
     		String privacy, String manufacturer, String format) {
 		BasicDBObject doc = new BasicDBObject("name", name)
 				.append("itemId", itemId)
@@ -108,7 +108,7 @@ public class ItemListTest {
 				.append("found", found)
 				.append("user", user)
 				.append("author", author)
-				.append("series", series)
+				.append("collection", collection)
 				.append("sequence", sequence)
 				.append("privacy", privacy)
 				.append("manufacturer", manufacturer)
