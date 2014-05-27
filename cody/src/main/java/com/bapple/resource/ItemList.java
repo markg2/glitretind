@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.bapple.ConnectionManagerFactory;
 import com.bapple.QueryCriteria;
-import com.mongodb.BasicDBObject;
+import com.bapple.TableName;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -55,7 +55,7 @@ public class ItemList {
 	 * @return a String in JSON format containing all of the documents to be returned
 	 */
 	@GET
-	@Path("/{userid:[a-f0-9\\-]+}/{collectionname:[a-f0-9\\-]+}")
+	@Path("/{userid:[a-f0-9\\-]+}/{collectionname:[a-f0-9\\- ]+}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getListByUserCollection(@PathParam("userid") final String strUser,
 			@PathParam("collectionname") final String strCollectionName) {
@@ -69,9 +69,6 @@ public class ItemList {
 	 * @param strUser
 	 * @return
 	 */
-/**	this method may not be needed since the response from the prior method contains
- * enough information for determining the count.  The question is, do the libraries 
- * on the devices make it easy enough to determine the count???
 	@GET
 	@Path("/{userid:[a-f0-9\\-]+}/{collectionname:[a-f0-9\\-]+}/count")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -84,7 +81,6 @@ public class ItemList {
 
 		return "{\"count\":" + Integer.valueOf(itemCount).toString() + "}";
 	}
-*/
 	
 	/**
 	 * This method builds a response containing several item documents.  The
@@ -94,14 +90,17 @@ public class ItemList {
 	 */
 	private String buildResponse(DBObject queryCriteria) {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
-		DBCollection coll = db.getCollection("item");
+		DBCollection coll = db.getCollection(TableName.ITEMS);
 		DBCursor cursor = coll.find(queryCriteria);
+		
 		String strDocs = "[";
 		String strComma = "";
 
 		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			obj.put("href", "localhost:8080/cody/resource/items/" + obj.get("_id").toString());
 			strDocs += strComma;
-			strDocs += cursor.next();
+			strDocs += obj;
 			strComma = ",";
 		}
 		

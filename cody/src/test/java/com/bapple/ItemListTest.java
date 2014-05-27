@@ -60,10 +60,10 @@ public class ItemListTest {
 			for (String s : colls) {
 			    System.out.println(s);
 			}
-			DBCollection coll = db.getCollection("item");
+			DBCollection coll = db.getCollection(TableName.ITEMS);
 			if (coll.count() > 0)
 				coll.drop();
-			coll = db.getCollection("item");
+			coll = db.getCollection(TableName.ITEMS);
 			populateCollectionWithBooks(coll);
 			populateCollectionWithEquipement(coll);
 			

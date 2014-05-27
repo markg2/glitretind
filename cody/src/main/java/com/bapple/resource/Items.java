@@ -8,13 +8,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.bapple.ConnectionManagerFactory;
-import com.mongodb.BasicDBObject;
+import com.bapple.QueryCriteria;
+import com.bapple.TableName;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 
-@Path("/itemdetail")
-public class ItemDetail {
+@Path("/items")
+public class Items {
 
 	/**
 	 * This method returns all of the fields for the specified item except for
@@ -24,7 +25,7 @@ public class ItemDetail {
 	 */
 	@GET
 	@Path("/{id:[a-f0-9\\-]+}")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String getAsJSON(@PathParam("id") final String dbItemId) {
 		return getDetail(dbItemId);
 	}
@@ -52,12 +53,9 @@ public class ItemDetail {
 	 */
 	private String getDetail(final String dbItemId) {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DBCollection coll = db.getCollection(TableName.ITEMS);
+		DBObject obj = coll.findOne(QueryCriteria.getById(dbItemId));
 		
-		DBCollection coll = db.getCollection("item");
-		
-		BasicDBObject objToFind = new BasicDBObject("itemId", dbItemId);
-		DBObject obj = coll.findOne(objToFind);
-		
-		return obj != null ? obj.toString() : "{}";
+		return obj != null ? obj.toString() : "{'notFound':'" + dbItemId + "'}";
 	}
 }
