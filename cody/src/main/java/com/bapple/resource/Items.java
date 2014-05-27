@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.bapple.ConnectionManagerFactory;
 import com.bapple.QueryCriteria;
+import com.bapple.Server;
 import com.bapple.TableName;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -56,6 +57,8 @@ public class Items {
 		DBCollection coll = db.getCollection(TableName.ITEMS);
 		DBObject obj = coll.findOne(QueryCriteria.getById(dbItemId));
 		
+		obj.put("href", Server.getBaseUrl() +"/items/" + dbItemId);
+
 		return obj != null ? obj.toString() : "{'notFound':'" + dbItemId + "'}";
 	}
 }

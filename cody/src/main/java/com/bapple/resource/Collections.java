@@ -39,6 +39,8 @@ public class Collections {
 		String strComma = "";
 
 		for (DBObject result : agg.results()) {
+			Object obj = result.get("_id");
+			result.put("href", Server.getBaseUrl() +"/collections/" + obj.toString());
 			strDocs += strComma;
 			strDocs += result;
 			strComma = ",";
@@ -66,7 +68,7 @@ public class Collections {
 
 		AggregationOutput agg = getCollections(strCollectionName);
 		
-		String strDocs = "[";
+		String strDocs = "";
 		String strComma = "";
 
 		for (DBObject result : agg.results()) {
@@ -77,8 +79,6 @@ public class Collections {
 			strComma = ",";
 		}
 		
-		strDocs += "]";
-
 		return strDocs;
 	}
 
