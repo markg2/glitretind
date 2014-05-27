@@ -70,6 +70,7 @@ public class Collections {
 		String strComma = "";
 
 		for (DBObject result : agg.results()) {
+			result.put("href", Server.getBaseUrl() +"/collections/" + strCollectionName);
 			result.put("items", queryResults);
 			strDocs += strComma;
 			strDocs += result;
