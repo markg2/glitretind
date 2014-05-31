@@ -13,16 +13,19 @@ import com.mongodb.BasicDBObject;
  */
 public class QueryCriteria {
 	public static BasicDBObject getById(String strId) {
-		return new BasicDBObject("_id", new ObjectId(strId));
+		return new BasicDBObject("_id", strId);
 	}
-	
+
+	public static BasicDBObject getByName(String strName) {
+		return new BasicDBObject("name", strName);
+	}
 	
 	public static BasicDBObject getByUser(String strUser) {
 		return new BasicDBObject("user", strUser);
 	}
 
-	public static BasicDBObject getByUserCollection(String strUser, String strCollection) {
-		return new BasicDBObject("user", strUser).append("collection", strCollection);
+	public static BasicDBObject getByUserCollection(String strUserUuid, String strCollection) {
+		return new BasicDBObject("user", strUserUuid).append("collections", strCollection);
 	}
 
 }

@@ -23,7 +23,8 @@ import com.mongodb.DBObject;
 
 @Path("/collections")
 public class Collections {
-	private static String USER_PAULA = "5376e5306283df5bc1fe74d9";
+	private static String USER_PAULA = "Paula";
+	private String USER_ID = null;
 	
 	/**
 	 * This method returns an array of collections for the specified user.  Each
@@ -63,7 +64,7 @@ public class Collections {
 	@Path("/{collectionname:[A-Za-z0-9\\-]+}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getListByUserCollection(@PathParam("collectionname") final String strCollectionName) {
-		List<DBObject> queryResults = getItems(QueryCriteria.getByUserCollection(USER_PAULA, strCollectionName));
+		List<DBObject> queryResults = getItems(QueryCriteria.getByUserCollection(getUserUUID(), strCollectionName));
 		addHrefToItems(queryResults);
 
 		AggregationOutput agg = getCollections(strCollectionName);
@@ -87,6 +88,13 @@ public class Collections {
 	 * With each collection, the number of items in each colleciton, 'numitems', 
 	 * is also determined.
 	 * 
+	 * Sample Syntax:
+	 * db.items.aggregate([
+	 * {"$unwind":"$collections"},
+	 * {"$match":{"user":"2a7b4099-684e-4b6e-80b8-319772d99fff", "collections":"4c20201a-a237-4d2c-82df-c3188bcd2c5c"}},
+	 * {"$group":{"_id":"$collections", "count":{"$sum":1}}}
+	 * ])
+	 *  
 	 * @param strCollectionName if not specified, then get all collections
 	 * @return
 	 */
@@ -94,20 +102,22 @@ public class Collections {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
 		DBCollection coll = db.getCollection(TableName.ITEMS);
 		
+		// $unwind
+		DBObject unwind = new BasicDBObject("$unwind", "$collections");
 		
 		// $match
-		DBObject filter = new BasicDBObject("user", USER_PAULA);
+		DBObject filter = new BasicDBObject("user", getUserUUID());
 		if (strCollectionName != null)
-			filter.put("collection", strCollectionName);
+			filter.put("collections", strCollectionName);
 		DBObject match = new BasicDBObject("$match", filter);
 
 		// $group
-		BasicDBObject groupFields = new BasicDBObject( "_id", "$collection");
-		groupFields.append("numitems", new BasicDBObject( "$sum", 1));
+		BasicDBObject groupFields = new BasicDBObject( "_id", "$collections");
+		groupFields.append("count", new BasicDBObject( "$sum", 1));
 		DBObject group = new BasicDBObject("$group", groupFields);
 		
 		// run the aggregation
-		List<DBObject> pipeline = Arrays.asList(match, group);
+		List<DBObject> pipeline = Arrays.asList(unwind, match, group);
 		AggregationOutput agg = coll.aggregate(pipeline);
 
 		return agg;
@@ -140,5 +150,19 @@ public class Collections {
 		}
 	}
 	
+	/**
+	 * TODO: this method goes away once OAuth is working.  It is here merely to
+	 * provide for fake authentication until real authentication is in place.
+	 */
+	private String getUserUUID() {
+		if (USER_ID == null) {
+			DB db = ConnectionManagerFactory.getFactory().getConnection();
+			DBCollection coll = db.getCollection(TableName.USERS);
+			DBObject obj = coll.findOne(QueryCriteria.getByName(USER_PAULA));
+			USER_ID = obj.get("_id").toString();
+		}
+		
+		return USER_ID;
+	}
 }
 
