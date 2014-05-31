@@ -1,7 +1,5 @@
 package com.bapple;
 
-import org.bson.types.ObjectId;
-
 import com.mongodb.BasicDBObject;
 
 /**
@@ -20,12 +18,12 @@ public class QueryCriteria {
 		return new BasicDBObject("name", strName);
 	}
 	
-	public static BasicDBObject getByUser(String strUser) {
-		return new BasicDBObject("user", strUser);
+	public static BasicDBObject getByUser(String strUserUuid) {
+		return new BasicDBObject("user", strUserUuid);
 	}
 
-	public static BasicDBObject getByUserCollection(String strUserUuid, String strCollection) {
-		return new BasicDBObject("user", strUserUuid).append("collections", strCollection);
+	public static BasicDBObject getByUserCollection(String strUserUuid, String strCollectionUuid) {
+		return new BasicDBObject("user", strUserUuid).append("collections", strCollectionUuid);
 	}
 
 }

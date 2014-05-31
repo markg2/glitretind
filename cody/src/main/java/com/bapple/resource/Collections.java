@@ -1,6 +1,7 @@
 package com.bapple.resource;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import com.mongodb.DBObject;
 @Path("/collections")
 public class Collections {
 	private static String USER_PAULA = "Paula";
-	private String USER_ID = null;
+	private static String USER_ID = null;
 	
 	/**
 	 * This method returns an array of collections for the specified user.  Each
@@ -35,12 +36,14 @@ public class Collections {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getListByUser() {
 		AggregationOutput agg = getCollections(null);
+		HashMap<String, DBObject> collectionsNames = getCollectionNames();
 		
 		String strDocs = "[";
 		String strComma = "";
 
 		for (DBObject result : agg.results()) {
 			Object obj = result.get("_id");
+			result.put("name", collectionsNames.get(obj.toString()).get("name"));
 			result.put("href", Server.getBaseUrl() +"/collections/" + obj.toString());
 			strDocs += strComma;
 			strDocs += result;
@@ -61,19 +64,21 @@ public class Collections {
 	 * @return a String in JSON format containing all of the documents to be returned
 	 */
 	@GET
-	@Path("/{collectionname:[A-Za-z0-9\\-]+}")
+	@Path("/{collectionuuid:[A-Za-z0-9\\-]+}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getListByUserCollection(@PathParam("collectionname") final String strCollectionName) {
-		List<DBObject> queryResults = getItems(QueryCriteria.getByUserCollection(getUserUUID(), strCollectionName));
+	public String getListByUserCollection(@PathParam("collectionuuid") final String strUuid) {
+		List<DBObject> queryResults = getItems(QueryCriteria.getByUserCollection(getUserUuid(), strUuid));
 		addHrefToItems(queryResults);
 
-		AggregationOutput agg = getCollections(strCollectionName);
+		AggregationOutput agg = getCollections(strUuid);
+		HashMap<String, DBObject> collectionsNames = getCollectionNames();
 		
 		String strDocs = "";
 		String strComma = "";
 
 		for (DBObject result : agg.results()) {
-			result.put("href", Server.getBaseUrl() +"/collections/" + strCollectionName);
+			result.put("name", collectionsNames.get(strUuid).get("name"));
+			result.put("href", Server.getBaseUrl() +"/collections/" + strUuid);
 			result.put("items", queryResults);
 			strDocs += strComma;
 			strDocs += result;
@@ -95,10 +100,10 @@ public class Collections {
 	 * {"$group":{"_id":"$collections", "count":{"$sum":1}}}
 	 * ])
 	 *  
-	 * @param strCollectionName if not specified, then get all collections
+	 * @param strCollectionUuid if not specified, then get all collections
 	 * @return
 	 */
-	private AggregationOutput getCollections(String strCollectionName) {
+	private AggregationOutput getCollections(String strCollectionUuid) {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
 		DBCollection coll = db.getCollection(TableName.ITEMS);
 		
@@ -106,9 +111,9 @@ public class Collections {
 		DBObject unwind = new BasicDBObject("$unwind", "$collections");
 		
 		// $match
-		DBObject filter = new BasicDBObject("user", getUserUUID());
-		if (strCollectionName != null)
-			filter.put("collections", strCollectionName);
+		DBObject filter = new BasicDBObject("user", getUserUuid());
+		if (strCollectionUuid != null)
+			filter.put("collections", strCollectionUuid);
 		DBObject match = new BasicDBObject("$match", filter);
 
 		// $group
@@ -149,12 +154,34 @@ public class Collections {
 			obj.put("href", Server.getBaseUrl() +"/items/" + obj.get("_id").toString());
 		}
 	}
+
+	/**
+	 * This method gets all of the Collections documents for a user
+	 * and returns them.
+	 * 
+	 * @return List<DBObject> containing the collection documents for a specific user
+	 */
+	private HashMap<String, DBObject> getCollectionNames() {
+		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DBCollection coll = db.getCollection(TableName.COLLECTIONS);
+		DBCursor cursor = coll.find(QueryCriteria.getByUser(getUserUuid()));
+		List<DBObject> results = cursor.toArray();
+		Iterator<DBObject>i = results.iterator();
+		HashMap<String, DBObject> hm = new HashMap<String, DBObject>();
+		
+		while (i.hasNext()) {
+			DBObject o = i.next();
+			hm.put(o.get("_id").toString(), o);
+		}
+		
+		return hm;
+	}
 	
 	/**
 	 * TODO: this method goes away once OAuth is working.  It is here merely to
-	 * provide for fake authentication until real authentication is in place.
+	 * provide automatic "authentication" until the OAuth solution is in place.
 	 */
-	private String getUserUUID() {
+	private String getUserUuid() {
 		if (USER_ID == null) {
 			DB db = ConnectionManagerFactory.getFactory().getConnection();
 			DBCollection coll = db.getCollection(TableName.USERS);
