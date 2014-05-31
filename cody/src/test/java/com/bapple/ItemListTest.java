@@ -108,10 +108,10 @@ public class ItemListTest {
 		return getUUID(TableName.USERS, QueryCriteria.getByName(strUserName), "_id");
 	}
 	
-	   /**
-	    * This method is used to find the UUID of a specific Collections document.
-	    * @return
-	    */
+   /**
+    * This method is used to find the UUID of a specific Collections document.
+    * @return
+    */
 	private String getCollectionUUID(String strCollectionName) {
 		return getUUID(TableName.COLLECTIONS, QueryCriteria.getByName(strCollectionName), "_id");
 	}
@@ -120,7 +120,7 @@ public class ItemListTest {
 		DBCollection coll = _db.getCollection(strTablename);
 		DBObject obj = coll.findOne(queryCriteria);
 		
-		return obj.get("_id").toString();
+		return obj.get(strFieldToReturn).toString();
 		
 	}
 	

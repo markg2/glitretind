@@ -36,9 +36,11 @@ public static void create() {
 			}
 			
 			Set<String> colls = _db.getCollectionNames();
+			System.out.print("Mongo Collections: ");
 			for (String s : colls) {
-			    System.out.println(s);
+			    System.out.print(s + ", ");
 			}
+			System.out.println("");
 
 			// Remove Users
 			DBCollection coll = _db.getCollection(TableName.USERS);
