@@ -23,9 +23,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 @Path("/collections")
-public class Collections {
-	private static String USER_PAULA = "Paula";
-	private static String USER_ID = null;
+public class Collections extends ResourceBase {
 	
 	/**
 	 * This method returns an array of collections for the specified user.  Each
@@ -177,19 +175,5 @@ public class Collections {
 		return hm;
 	}
 	
-	/**
-	 * TODO: this method goes away once OAuth is working.  It is here merely to
-	 * provide automatic "authentication" until the OAuth solution is in place.
-	 */
-	private String getUserUuid() {
-		if (USER_ID == null) {
-			DB db = ConnectionManagerFactory.getFactory().getConnection();
-			DBCollection coll = db.getCollection(TableName.USERS);
-			DBObject obj = coll.findOne(QueryCriteria.getByName(USER_PAULA));
-			USER_ID = obj.get("_id").toString();
-		}
-		
-		return USER_ID;
-	}
 }
 

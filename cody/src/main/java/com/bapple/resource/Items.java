@@ -13,10 +13,11 @@ import com.bapple.Server;
 import com.bapple.TableName;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 @Path("/items")
-public class Items {
+public class Items extends ResourceBase{
 
 	/**
 	 * This method returns all of the fields for the specified item except for
@@ -32,14 +33,19 @@ public class Items {
 	}
 
 	/**
-	 * This method is for
+	 * This method returns the number of items that a user has
 	 * @return
 	 */
 	@GET
-	@Produces(MediaType.TEXT_HTML)
-	public String getAsHtml() {
-		return getDetail(null);
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getCount() {
+		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DBCollection coll = db.getCollection(TableName.ITEMS);
+		DBCursor cursor = coll.find(QueryCriteria.getByUser(getUserUuid()));
+		
+		return "{count: " + Integer.valueOf(cursor.count()).toString() + "}";
 	}
+	
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
