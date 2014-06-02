@@ -1,8 +1,12 @@
 package com.bapple.resource;
 
+import java.util.Iterator;
+
 import com.bapple.ConnectionManagerFactory;
 import com.bapple.QueryCriteria;
+import com.bapple.Server;
 import com.bapple.TableName;
+import com.mongodb.BasicDBList;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -24,6 +28,24 @@ public class ResourceBase {
 		}
 		
 		return USER_ID;
+	}
+
+	/**
+	 * This method replaces the 'collections' id values for an item with href oriented
+	 * URL values.
+	 */
+	protected void replaceCollectionUuidsWObjRefs(DBObject o) {
+		BasicDBList collectionsField = (BasicDBList)o.get("collections");
+		BasicDBList replacementCollectionsField = new BasicDBList();
+		
+		Iterator<Object> i = collectionsField.iterator();
+		while (i.hasNext()) {
+			String strCollectionUuid = i.next().toString();
+			String strHrefValue = Server.getBaseUrl() +"/collections/" + strCollectionUuid;
+			replacementCollectionsField.add(strHrefValue);
+		}
+		o.removeField("collections");
+		o.put("collections", replacementCollectionsField);
 	}
 
 }

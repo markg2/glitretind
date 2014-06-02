@@ -16,6 +16,7 @@ import com.bapple.QueryCriteria;
 import com.bapple.Server;
 import com.bapple.TableName;
 import com.mongodb.AggregationOutput;
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -67,6 +68,7 @@ public class Collections extends ResourceBase {
 	public String getListByUserCollection(@PathParam("collectionuuid") final String strCollectionUuid) {
 		List<DBObject> queryResults = getItems(QueryCriteria.getByUserCollection(getUserUuid(), strCollectionUuid));
 		addHrefToItems(queryResults);
+		transformCollectionsField(queryResults);
 
 		AggregationOutput agg = getCollections(strCollectionUuid);
 		HashMap<String, DBObject> collectionsNames = getCollectionNames();
@@ -85,7 +87,7 @@ public class Collections extends ResourceBase {
 		
 		return strDocs;
 	}
-	
+
 	/**
 	 * This method adds an href field to each 'item' which contains the URL for
 	 * the individual item.
@@ -174,5 +176,20 @@ public class Collections extends ResourceBase {
 		
 		return queryResults;
 	}
+	
+	/**
+	 * This method traverses a list of items and transforms the content in the
+	 * 'collections' field.
+	 * @param itemList
+	 */
+	private void transformCollectionsField(List<DBObject> itemList) {
+		Iterator<DBObject>i = itemList.iterator();
+		
+		while (i.hasNext()) {
+			DBObject o = i.next();
+			replaceCollectionUuidsWObjRefs(o);
+		}
+	}
+	
 }
 

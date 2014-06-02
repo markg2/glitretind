@@ -64,6 +64,7 @@ public class Items extends ResourceBase{
 		DBObject obj = coll.findOne(QueryCriteria.getById(dbItemId));
 		
 		obj.put("href", Server.getBaseUrl() +"/items/" + dbItemId);
+		replaceCollectionUuidsWObjRefs(obj);
 
 		return obj != null ? obj.toString() : "{'notFound':'" + dbItemId + "'}";
 	}
