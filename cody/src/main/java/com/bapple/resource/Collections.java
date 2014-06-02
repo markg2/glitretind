@@ -64,19 +64,19 @@ public class Collections extends ResourceBase {
 	@GET
 	@Path("/{collectionuuid:[A-Za-z0-9\\-]+}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getListByUserCollection(@PathParam("collectionuuid") final String strUuid) {
-		List<DBObject> queryResults = getItems(QueryCriteria.getByUserCollection(getUserUuid(), strUuid));
+	public String getListByUserCollection(@PathParam("collectionuuid") final String strCollectionUuid) {
+		List<DBObject> queryResults = getItems(QueryCriteria.getByUserCollection(getUserUuid(), strCollectionUuid));
 		addHrefToItems(queryResults);
 
-		AggregationOutput agg = getCollections(strUuid);
+		AggregationOutput agg = getCollections(strCollectionUuid);
 		HashMap<String, DBObject> collectionsNames = getCollectionNames();
 		
 		String strDocs = "";
 		String strComma = "";
 
 		for (DBObject result : agg.results()) {
-			result.put("name", collectionsNames.get(strUuid).get("name"));
-			result.put("href", Server.getBaseUrl() +"/collections/" + strUuid);
+			result.put("name", collectionsNames.get(strCollectionUuid).get("name"));
+			result.put("href", Server.getBaseUrl() +"/collections/" + strCollectionUuid);
 			result.put("items", queryResults);
 			strDocs += strComma;
 			strDocs += result;
@@ -85,7 +85,42 @@ public class Collections extends ResourceBase {
 		
 		return strDocs;
 	}
-
+	
+	/**
+	 * This method adds an href field to each 'item' which contains the URL for
+	 * the individual item.
+	 * @param coll
+	 */
+	private void addHrefToItems(List<DBObject> coll) {
+		Iterator<DBObject> i = coll.iterator();
+		while (i.hasNext()) {
+			DBObject obj = i.next();
+			obj.put("href", Server.getBaseUrl() +"/items/" + obj.get("_id").toString());
+		}
+	}
+	
+	/**
+	 * This method gets all of the Collections documents for a user
+	 * and returns them.
+	 * 
+	 * @return List<DBObject> containing the collection documents for a specific user
+	 */
+	private HashMap<String, DBObject> getCollectionNames() {
+		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DBCollection coll = db.getCollection(TableName.COLLECTIONS);
+		DBCursor cursor = coll.find(QueryCriteria.getByUser(getUserUuid()));
+		List<DBObject> results = cursor.toArray();
+		Iterator<DBObject>i = results.iterator();
+		HashMap<String, DBObject> hm = new HashMap<String, DBObject>();
+		
+		while (i.hasNext()) {
+			DBObject o = i.next();
+			hm.put(o.get("_id").toString(), o);
+		}
+		
+		return hm;
+	}
+	
 	/**
 	 * This method performs an aggregation to find what collections a user has.
 	 * With each collection, the number of items in each colleciton, 'numitems', 
@@ -139,41 +174,5 @@ public class Collections extends ResourceBase {
 		
 		return queryResults;
 	}
-	
-	/**
-	 * This method adds an href field to each 'item' which contains the URL for
-	 * the individual item.
-	 * @param coll
-	 */
-	private void addHrefToItems(List<DBObject> coll) {
-		Iterator<DBObject> i = coll.iterator();
-		while (i.hasNext()) {
-			DBObject obj = i.next();
-			obj.put("href", Server.getBaseUrl() +"/items/" + obj.get("_id").toString());
-		}
-	}
-
-	/**
-	 * This method gets all of the Collections documents for a user
-	 * and returns them.
-	 * 
-	 * @return List<DBObject> containing the collection documents for a specific user
-	 */
-	private HashMap<String, DBObject> getCollectionNames() {
-		DB db = ConnectionManagerFactory.getFactory().getConnection();
-		DBCollection coll = db.getCollection(TableName.COLLECTIONS);
-		DBCursor cursor = coll.find(QueryCriteria.getByUser(getUserUuid()));
-		List<DBObject> results = cursor.toArray();
-		Iterator<DBObject>i = results.iterator();
-		HashMap<String, DBObject> hm = new HashMap<String, DBObject>();
-		
-		while (i.hasNext()) {
-			DBObject o = i.next();
-			hm.put(o.get("_id").toString(), o);
-		}
-		
-		return hm;
-	}
-	
 }
 
