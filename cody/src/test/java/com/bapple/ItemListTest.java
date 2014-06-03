@@ -15,7 +15,6 @@ import com.mongodb.MongoClientURI;
 
 public class ItemListTest {
 	private static String USER_PAULA = "Paula";
-	private static String USER_MARK = "Mark";
 
 	private static MongoClient _mongoClient = null;
 	private static DB _db = null;
@@ -58,12 +57,10 @@ public class ItemListTest {
     @Test
     public void testUsersTable() {
 		DBCollection coll = _db.getCollection(TableName.USERS);
-		assertTrue(coll.count() == 2);
+		assertTrue(coll.count() == 1);
 		
 		// Check that both Mark and Paula appear in the data
-		DBObject obj = coll.findOne(QueryCriteria.getByName(USER_MARK));
-		assertTrue(USER_MARK.equalsIgnoreCase(obj.get("name").toString()));
-		obj = coll.findOne(QueryCriteria.getByName(USER_PAULA));
+		DBObject obj = coll.findOne(QueryCriteria.getByName(USER_PAULA));
 		assertTrue(USER_PAULA.equalsIgnoreCase(obj.get("name").toString()));
     }
     
@@ -89,7 +86,7 @@ public class ItemListTest {
    @Test
    public void testItemsTable() {
 		DBCollection coll = _db.getCollection(TableName.BOOKS);
-		assertTrue(coll.count() == 28);
+		assertTrue(coll.count() == 15);
 	   
 		DBCursor cursor = coll.find(QueryCriteria.getByUserCollection(getUserUUID(USER_PAULA), getCollectionUUID("In Death")));
 		assertTrue(cursor.count() == 9);

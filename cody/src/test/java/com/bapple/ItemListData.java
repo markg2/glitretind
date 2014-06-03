@@ -23,8 +23,7 @@ public class ItemListData {
 public static void create() {
 		cleanUp();
 		DBCollection coll = _db.getCollection(TableName.BOOKS);
-		populateItemsWithBooks(coll);
-		populateItemsWithEquipement(coll);
+		populateBooks(coll);
 
 	}
 	
@@ -67,7 +66,7 @@ public static void create() {
 	 * WARNING!!! If you add or change this data, you need to check the tests in ItemListTest.java
 	 * @param coll
 	 */
-    private static void populateItemsWithBooks(DBCollection coll) {
+    private static void populateBooks(DBCollection coll) {
     	String strUserUuid = addToUsers("Paula");
     	
     	// Collection - One Upon A
@@ -124,49 +123,6 @@ public static void create() {
     	
 		return doc;
     }
-    
-	/**
-	 * WARNING!!! If you add or change this data, you need to check the tests in ItemListTest.java
-	 * @param coll
-	 */
-    private static void populateItemsWithEquipement(DBCollection coll) {
-    	String strUserUuid = addToUsers("Mark");
-
-    	coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Das Parka", "84102", "own", "public", "patagonia.com", new String[]{"climbing", "insulations"}, "orange, medium, purchased directly from Patagonia"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Snowstorm 20 Backpack - 1220 cu in", "123456", "own", "public", "Lowe Alpine", new String[]{"climbing", "backpack", "skiing"}, "red, purchased on backcountry.com, $62.97, Jun 28 2010"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Snowstorm 20 Backpack - 1220 cu in", "", "own", "public", "Lowe Alpine", new String[]{"climbing", "backpack", "skiing"}, "black, purchased on sunnysports.com, $64, 2013"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Attack MX50+10 Pack - 3000 cu in", "", "own", "public", "Lowe Alpine", new String[]{"climbing", "backpack"}, "cobalt/slate gray, purchased on backcountry.com, $179.96, Feb 18 2009"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Serendipity Jacket", "", "own", "public", "Cloudveil", new String[]{"climbing", "softshell", "skiing"}, "medium, Pompei, purchased on backcountry.com, $161.97, Jan 7 2009"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Alpine Guide Jacket", "83940", "own", "public", "patagonia.com", new String[]{"climbing", "softshell", "skiing"}, "medium, Nickel, purchased direct, $137, reg $229, Jan 7 2009"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Ascensionist Pack", "48000", "own", "public", "patagonia.com", new String[]{"climbing", "backpack"}, "Eclectic Orange, 2800 cu in, dividend purchase on rei.com, $179, full price, April 2014"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Gritty Pack", "", "own", "public", "patagonia.com", new String[]{"climbing", "backpack"}, "red, 2200 cu in, purchased direct, $clearance, ~2007/2008"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Sprint Action Sport Pack", "", "own", "public", "Lowe Alpine", new String[]{"climbing", "backpack", "hydration"}, "lime/black, <500 cu in, purchased REI store, ~$30, ~1999"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Troposphere Jacket", "84540", "own", "public", "patagonia.com", new String[]{"climbing", "hardshell", "skiing"}, "medium, Paintbrush, backcountry.com discount site, <=$150, reg $299, April 2013"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Mixed Guide Hoody (hybrid hard/softshell)", "", "own", "public", "patagonia.com", new String[]{"climbing", "softshell", "skiing"}, "medium, Paintbrush Red, purchased Patagonia store Heavenly Village, $225, reg $299, Dec 2012"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Triolet Jacket", "", "own", "public", "patagonia.com", new String[]{"climbing", "hardshell", "skiing"}, "medium, purple, purchased Sierra Outfitters, ~$200, reg <$400, ~1997"));
-		coll.insert(populateEquipmentDoc(UUID.randomUUID().toString(), strUserUuid, "Mountain Jacket", "", "own", "public", "TNF", new String[]{"climbing", "hardshell", "skiing", "mountaineering"}, "medium, Teal/black, purchased TNF Berkeley, $365, ~1993"));
-    }
-
-    private static BasicDBObject populateEquipmentDoc(String id, String user, String name, String itemId, String state,  
-    		String privacy, String manufacturer, String[]tags, String notes) {
-    	List<String> tagsArr = new ArrayList<String>();
-    	for (String tag: tags)
-    		tagsArr.add(tag);
-    	
-		BasicDBObject doc = new BasicDBObject("name", name)
-				.append("itemId", itemId)
-				.append("state", state)
-				.append("privacy", privacy)
-				.append("manufacturer", manufacturer)
-				.append("notes", notes)
-				.append("tags", tagsArr)
-				.append("user", user)
-				.append("_id", id);
-		
-    	
-		return doc;
-    }
-
     
     /**
 //		Base64 b64 = new Base64(true);
