@@ -16,7 +16,6 @@ import com.bapple.QueryCriteria;
 import com.bapple.Server;
 import com.bapple.TableName;
 import com.mongodb.AggregationOutput;
-import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -140,7 +139,7 @@ public class Collections extends ResourceBase {
 	 */
 	private AggregationOutput getCollections(String strCollectionUuid) {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
-		DBCollection coll = db.getCollection(TableName.ITEMS);
+		DBCollection coll = db.getCollection(TableName.BOOKS);
 		
 		// $unwind
 		DBObject unwind = new BasicDBObject("$unwind", "$collections");
@@ -170,7 +169,7 @@ public class Collections extends ResourceBase {
 	 */
 	private List<DBObject> getItems(DBObject queryCriteria) {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
-		DBCollection coll = db.getCollection(TableName.ITEMS);
+		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBCursor cursor = coll.find(queryCriteria);
 		List<DBObject> queryResults = cursor.toArray();
 		

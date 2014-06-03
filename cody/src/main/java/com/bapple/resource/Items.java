@@ -40,7 +40,7 @@ public class Items extends ResourceBase{
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getCount() {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
-		DBCollection coll = db.getCollection(TableName.ITEMS);
+		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBCursor cursor = coll.find(QueryCriteria.getByUser(getUserUuid()));
 		
 		return "{count: " + Integer.valueOf(cursor.count()).toString() + "}";
@@ -60,7 +60,7 @@ public class Items extends ResourceBase{
 	 */
 	private String getDetail(final String dbItemId) {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
-		DBCollection coll = db.getCollection(TableName.ITEMS);
+		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBObject obj = coll.findOne(QueryCriteria.getById(dbItemId));
 		
 		obj.put("href", Server.getBaseUrl() +"/items/" + dbItemId);

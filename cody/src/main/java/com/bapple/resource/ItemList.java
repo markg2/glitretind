@@ -90,7 +90,7 @@ public class ItemList {
 	 */
 	private String buildResponse(DBObject queryCriteria) {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
-		DBCollection coll = db.getCollection(TableName.ITEMS);
+		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBCursor cursor = coll.find(queryCriteria);
 		
 		String strDocs = "[";

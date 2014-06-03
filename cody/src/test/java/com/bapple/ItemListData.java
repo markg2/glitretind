@@ -14,15 +14,15 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 public class ItemListData {
-	private static final String DATABASE_URI = "mongodb://dbrex:lego2014@ds045679.mongolab.com:45679/rex";
-	private static final String DATABASE_NAME = "rex";
+	public static final String DATABASE_URI = "mongodb://bworm:ouat@ds033828.mongolab.com:33828/glitretind";
+	public static final String DATABASE_NAME = "glitretind";
 
 	private static MongoClient _mongoClient = null;
 	private static DB _db = null;
 
 public static void create() {
 		cleanUp();
-		DBCollection coll = _db.getCollection(TableName.ITEMS);
+		DBCollection coll = _db.getCollection(TableName.BOOKS);
 		populateItemsWithBooks(coll);
 		populateItemsWithEquipement(coll);
 
@@ -53,7 +53,7 @@ public static void create() {
 				coll.drop();
 			
 			// Remove Items
-			coll = _db.getCollection(TableName.ITEMS);
+			coll = _db.getCollection(TableName.BOOKS);
 			if (coll.count() > 0)
 				coll.drop();
 			

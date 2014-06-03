@@ -14,8 +14,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 public class ItemListTest {
-	private static final String DATABASE_URI = "mongodb://dbrex:lego2014@ds045679.mongolab.com:45679/rex";
-	private static final String DATABASE_NAME = "rex";
 	private static String USER_PAULA = "Paula";
 	private static String USER_MARK = "Mark";
 
@@ -39,8 +37,8 @@ public class ItemListTest {
     	// Setup database connection for tests
 		if (_mongoClient == null) {
 			try {
-				_mongoClient = new MongoClient(new MongoClientURI(DATABASE_URI));
-				_db = _mongoClient.getDB(DATABASE_NAME);
+				_mongoClient = new MongoClient(new MongoClientURI(ItemListData.DATABASE_URI));
+				_db = _mongoClient.getDB(ItemListData.DATABASE_NAME);
 
 				// Setup all data needed for tests in this class/file
 		    	ItemListData.create();
@@ -90,7 +88,7 @@ public class ItemListTest {
      */
    @Test
    public void testItemsTable() {
-		DBCollection coll = _db.getCollection(TableName.ITEMS);
+		DBCollection coll = _db.getCollection(TableName.BOOKS);
 		assertTrue(coll.count() == 28);
 	   
 		DBCursor cursor = coll.find(QueryCriteria.getByUserCollection(getUserUUID(USER_PAULA), getCollectionUUID("In Death")));
