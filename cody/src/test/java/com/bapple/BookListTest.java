@@ -13,7 +13,7 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
-public class ItemListTest {
+public class BookListTest {
 	private static String USER_PAULA = "Paula";
 
 	private static MongoClient _mongoClient = null;
@@ -36,11 +36,11 @@ public class ItemListTest {
     	// Setup database connection for tests
 		if (_mongoClient == null) {
 			try {
-				_mongoClient = new MongoClient(new MongoClientURI(ItemListData.DATABASE_URI));
-				_db = _mongoClient.getDB(ItemListData.DATABASE_NAME);
+				_mongoClient = new MongoClient(new MongoClientURI(BookListData.DATABASE_URI));
+				_db = _mongoClient.getDB(BookListData.DATABASE_NAME);
 
 				// Setup all data needed for tests in this class/file
-		    	ItemListData.create();
+		    	BookListData.create();
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 				System.out.println("ItemListTest.setUp() has an exception executing MongoClient.getDB()");

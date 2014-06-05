@@ -1,8 +1,6 @@
 package com.bapple;
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -13,7 +11,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
-public class ItemListData {
+public class BookListData {
 	public static final String DATABASE_URI = "mongodb://bworm:ouat@ds033828.mongolab.com:33828/glitretind";
 	public static final String DATABASE_NAME = "glitretind";
 

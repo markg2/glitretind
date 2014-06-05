@@ -17,8 +17,8 @@ import com.mongodb.MongoClientURI;
 public class Startup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String DATABASE_URI = "mongodb://dbrex:lego2014@ds045679.mongolab.com:45679/rex";
-	private static final String DATABASE_NAME = "rex";
+	public static final String DATABASE_URI = "mongodb://bworm:ouat@ds033828.mongolab.com:33828/glitretind";
+	public static final String DATABASE_NAME = "glitretind";
 
        
     /**

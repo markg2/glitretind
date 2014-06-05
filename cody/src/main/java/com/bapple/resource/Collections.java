@@ -27,8 +27,8 @@ public class Collections extends ResourceBase {
 	
 	/**
 	 * This method returns an array of collections for the specified user.  Each
-	 * item in the array contains a document specifying the name of the collection
-	 * and how many items are in it.
+	 * book in the array contains a document specifying the name of the collection
+	 * and how many books are in it.
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -55,7 +55,7 @@ public class Collections extends ResourceBase {
 
 	/**
 	 * This method returns the documents for the specified user
-	 * and collection.  The number of items in the collection is a part of the
+	 * and collection.  The number of books in the collection is a part of the
 	 * response too.
 	 * 
 	 * @param strCollection a String containing the id of the collection to query
@@ -65,8 +65,8 @@ public class Collections extends ResourceBase {
 	@Path("/{collectionuuid:[A-Za-z0-9\\-]+}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getListByUserCollection(@PathParam("collectionuuid") final String strCollectionUuid) {
-		List<DBObject> queryResults = getItems(QueryCriteria.getByUserCollection(getUserUuid(), strCollectionUuid));
-		addHrefToItems(queryResults);
+		List<DBObject> queryResults = getBooks(QueryCriteria.getByUserCollection(getUserUuid(), strCollectionUuid));
+		addHrefToBooks(queryResults);
 		transformCollectionsField(queryResults);
 
 		AggregationOutput agg = getCollections(strCollectionUuid);
@@ -78,7 +78,7 @@ public class Collections extends ResourceBase {
 		for (DBObject result : agg.results()) {
 			result.put("name", collectionsNames.get(strCollectionUuid).get("name"));
 			result.put("href", Server.getBaseUrl() +"/collections/" + strCollectionUuid);
-			result.put("items", queryResults);
+			result.put("books", queryResults);
 			strDocs += strComma;
 			strDocs += result;
 			strComma = ",";
@@ -88,15 +88,15 @@ public class Collections extends ResourceBase {
 	}
 
 	/**
-	 * This method adds an href field to each 'item' which contains the URL for
-	 * the individual item.
+	 * This method adds an href field to each 'book' which contains the URL for
+	 * the individual book.
 	 * @param coll
 	 */
-	private void addHrefToItems(List<DBObject> coll) {
+	private void addHrefToBooks(List<DBObject> coll) {
 		Iterator<DBObject> i = coll.iterator();
 		while (i.hasNext()) {
 			DBObject obj = i.next();
-			obj.put("href", Server.getBaseUrl() +"/items/" + obj.get("_id").toString());
+			obj.put("href", Server.getBaseUrl() + "/books/" + obj.get("_id").toString());
 		}
 	}
 	
@@ -124,11 +124,11 @@ public class Collections extends ResourceBase {
 	
 	/**
 	 * This method performs an aggregation to find what collections a user has.
-	 * With each collection, the number of items in each colleciton, 'numitems', 
+	 * With each collection, the number of books in each colleciton, 'numbooks', 
 	 * is also determined.
 	 * 
 	 * Sample Syntax:
-	 * db.items.aggregate([
+	 * db.books.aggregate([
 	 * {"$unwind":"$collections"},
 	 * {"$match":{"user":"2a7b4099-684e-4b6e-80b8-319772d99fff", "collections":"4c20201a-a237-4d2c-82df-c3188bcd2c5c"}},
 	 * {"$group":{"_id":"$collections", "count":{"$sum":1}}}
@@ -163,11 +163,11 @@ public class Collections extends ResourceBase {
 	}
 	
 	/**
-	 * This method returns a list of 'item' objects in a List.
+	 * This method returns a list of 'book' objects in a List.
 	 * @param queryCriteria
-	 * @return a list of 'item' objects
+	 * @return a list of 'book' objects
 	 */
-	private List<DBObject> getItems(DBObject queryCriteria) {
+	private List<DBObject> getBooks(DBObject queryCriteria) {
 		DB db = ConnectionManagerFactory.getFactory().getConnection();
 		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBCursor cursor = coll.find(queryCriteria);
@@ -177,12 +177,12 @@ public class Collections extends ResourceBase {
 	}
 	
 	/**
-	 * This method traverses a list of items and transforms the content in the
+	 * This method traverses a list of books and transforms the content in the
 	 * 'collections' field.
-	 * @param itemList
+	 * @param bookList
 	 */
-	private void transformCollectionsField(List<DBObject> itemList) {
-		Iterator<DBObject>i = itemList.iterator();
+	private void transformCollectionsField(List<DBObject> bookList) {
+		Iterator<DBObject>i = bookList.iterator();
 		
 		while (i.hasNext()) {
 			DBObject o = i.next();
