@@ -123,16 +123,6 @@ public static void create() {
     }
     
     /**
-//		Base64 b64 = new Base64(true);
-		String s = UUID.randomUUID().toString();
-		System.out.println(s);
-//		String enc = Base64.encodeBase64URLSafe(s.getBytes()).toString();
-		byte[] enc = Base64.encodeBase64URLSafe(s.getBytes());
-		System.out.println(Arrays.toString(enc));
-		String strEnc = new String(enc);
-		System.out.println(strEnc);
-		String decrypt = new String(Base64.decodeBase64(enc));
-		System.out.println(decrypt);
      * @param strCollectionName
      * @return
      */
