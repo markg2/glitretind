@@ -50,7 +50,7 @@ public class Books extends ResourceBase{
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	public String postbook() {
-		return "{\"message\": \"an book Detail was posted to Cody.\"}\n";
+		return "{\"message\": \"an book Detail was posted to thriftstore.\"}\n";
 	}
 	
 	/**

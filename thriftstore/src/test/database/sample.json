@@ -1,5 +1,5 @@
-curl -i -H "Accept: text/plain" -X GET http://192.168.1.69:8080/cody/rest/item
-curl -i -H "Accept: text/plain" -X GET http://localhost:8080/cody/rest/item
+curl -i -H "Accept: text/plain" -X GET http://192.168.1.69:8080/thriftstore/rest/item
+curl -i -H "Accept: text/plain" -X GET http://localhost:8080/thriftstore/rest/item
 
 QUERY ItemList 
 db.item.find({}, {"_id":false, "name":true, "itemId":true, "manufacturer":true})

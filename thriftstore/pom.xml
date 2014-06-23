@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.bapple</groupId>
-  <artifactId>cody</artifactId>
+  <artifactId>thriftstore</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>cody Maven Webapp</name>
+  <name>thriftstore Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -44,6 +44,6 @@
 	</dependency>
   </dependencies>
   <build>
-    <finalName>cody</finalName>
+    <finalName>thriftstore</finalName>
   </build>
 </project>
