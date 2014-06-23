@@ -23,7 +23,7 @@ import com.olafrye.Server;
 import com.olafrye.TableName;
 
 @Path("/collections")
-public class Collections extends ResourceBase {
+public class BookBags extends ResourceBase {
 	
 	/**
 	 * This method returns an array of collections for the specified user.  Each
