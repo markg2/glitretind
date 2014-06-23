@@ -1,4 +1,4 @@
-package com.bapple;
+package com.olafrye;
 
 public class TableName {
 	public static String COLLECTIONS = "collections";

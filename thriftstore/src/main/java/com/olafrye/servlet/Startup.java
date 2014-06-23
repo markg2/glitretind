@@ -1,4 +1,4 @@
-package com.bapple.servlet;
+package com.olafrye.servlet;
 
 import java.net.UnknownHostException;
 
@@ -6,10 +6,10 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-import com.bapple.ConnectionManagerFactory;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.olafrye.ConnectionManagerFactory;
 
 /**
  * Servlet implementation class Startup

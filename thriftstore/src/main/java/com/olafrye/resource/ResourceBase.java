@@ -1,15 +1,15 @@
-package com.bapple.resource;
+package com.olafrye.resource;
 
 import java.util.Iterator;
 
-import com.bapple.ConnectionManagerFactory;
-import com.bapple.QueryCriteria;
-import com.bapple.Server;
-import com.bapple.TableName;
 import com.mongodb.BasicDBList;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
+import com.olafrye.ConnectionManagerFactory;
+import com.olafrye.QueryCriteria;
+import com.olafrye.Server;
+import com.olafrye.TableName;
 
 public class ResourceBase {
 	protected static String USER_PAULA = "Paula";

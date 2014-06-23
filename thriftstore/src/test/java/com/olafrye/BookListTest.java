@@ -1,4 +1,4 @@
-package com.bapple;
+package com.olafrye;
 
 import org.junit.*;
 
@@ -12,6 +12,8 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.olafrye.QueryCriteria;
+import com.olafrye.TableName;
 
 public class BookListTest {
 	private static String USER_PAULA = "Paula";

@@ -1,4 +1,4 @@
-package com.bapple.resource;
+package com.olafrye.resource;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,16 +11,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.bapple.ConnectionManagerFactory;
-import com.bapple.QueryCriteria;
-import com.bapple.Server;
-import com.bapple.TableName;
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.olafrye.ConnectionManagerFactory;
+import com.olafrye.QueryCriteria;
+import com.olafrye.Server;
+import com.olafrye.TableName;
 
 @Path("/collections")
 public class Collections extends ResourceBase {

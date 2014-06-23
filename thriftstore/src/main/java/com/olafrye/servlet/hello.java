@@ -1,4 +1,4 @@
-package com.bapple.servlet;
+package com.olafrye.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,4 +1,4 @@
-package com.bapple;
+package com.olafrye;
 
 import com.mongodb.BasicDBObject;
 

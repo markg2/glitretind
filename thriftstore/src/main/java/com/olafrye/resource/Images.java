@@ -1,4 +1,4 @@
-package com.bapple.resource;
+package com.olafrye.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
