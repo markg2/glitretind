@@ -11,20 +11,26 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.google.inject.Inject;
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.olafrye.ConnectionManagerFactory;
 import com.olafrye.QueryCriteria;
 import com.olafrye.Server;
 import com.olafrye.TableName;
+import com.olafrye.db.ConnectionManager;
 
 @Path("/collections")
 public class BookBags extends ResourceBase {
 	
+	BookBags(ConnectionManager connectionManager) {
+		super(connectionManager);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * This method returns an array of collections for the specified user.  Each
 	 * book in the array contains a document specifying the name of the collection
@@ -107,7 +113,7 @@ public class BookBags extends ResourceBase {
 	 * @return List<DBObject> containing the collection documents for a specific user
 	 */
 	private HashMap<String, DBObject> getCollectionNames() {
-		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DB db = connectionManager.getConnection();
 		DBCollection coll = db.getCollection(TableName.COLLECTIONS);
 		DBCursor cursor = coll.find(QueryCriteria.getByUser(getUserUuid()));
 		List<DBObject> results = cursor.toArray();
@@ -138,7 +144,7 @@ public class BookBags extends ResourceBase {
 	 * @return
 	 */
 	private AggregationOutput getCollections(String strCollectionUuid) {
-		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DB db = connectionManager.getConnection();
 		DBCollection coll = db.getCollection(TableName.BOOKS);
 		
 		// $unwind
@@ -168,7 +174,7 @@ public class BookBags extends ResourceBase {
 	 * @return a list of 'book' objects
 	 */
 	private List<DBObject> getBooks(DBObject queryCriteria) {
-		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DB db = connectionManager.getConnection();
 		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBCursor cursor = coll.find(queryCriteria);
 		List<DBObject> queryResults = cursor.toArray();
