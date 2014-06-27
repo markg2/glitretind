@@ -12,7 +12,7 @@ import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
  * This implementation is based on work found on:
  * https://sites.google.com/a/athaydes.com/renato-athaydes//posts/jersey_guice_rest_api 
  */
-public class MainModule extends GuiceServletContextListener {
+public class DbModule extends GuiceServletContextListener {
 
 	 @Override
 	 protected Injector getInjector() {
