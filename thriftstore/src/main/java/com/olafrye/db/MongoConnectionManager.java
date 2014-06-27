@@ -6,7 +6,7 @@ import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
-public class MongoConnectionManager implements ConnectionManager {
+class MongoConnectionManager implements ConnectionManager {
 	public static final String DATABASE_NAME = "glitretind";
 	public static final String DATABASE_URI = "mongodb://bworm:ouat@ds033828.mongolab.com:33828/glitretind";
 

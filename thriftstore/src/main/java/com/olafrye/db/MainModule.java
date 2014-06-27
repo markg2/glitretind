@@ -1,11 +1,9 @@
-package com.olafrye;
+package com.olafrye.db;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
-import com.olafrye.db.ConnectionManager;
-import com.olafrye.db.MongoConnectionManager;
 import com.sun.jersey.api.core.PackagesResourceConfig;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;

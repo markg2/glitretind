@@ -27,7 +27,7 @@
   </servlet-mapping>
   
   <listener>
-    <listener-class>com.olafrye.MainModule</listener-class>
+    <listener-class>com.olafrye.db.MainModule</listener-class>
   </listener>
 
   <filter>
