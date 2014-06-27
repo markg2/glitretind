@@ -12,7 +12,7 @@ public final class ConnectionManagerFactory {
 	/**
 	 * This method returns the Mongo connection
 	 */
-	public DB getConnection() {
+	protected DB getConnection() {
 		return m_db;
 	}
 	

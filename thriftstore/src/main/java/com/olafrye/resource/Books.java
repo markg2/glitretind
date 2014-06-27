@@ -7,17 +7,23 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.google.inject.Inject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.olafrye.ConnectionManagerFactory;
 import com.olafrye.QueryCriteria;
 import com.olafrye.Server;
 import com.olafrye.TableName;
+import com.olafrye.db.ConnectionManager;
 
 @Path("/books")
-public class Books extends ResourceBase{
+public class Books extends ResourceBase {
+
+	Books(ConnectionManager connectionManager) {
+		super(connectionManager);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * This method returns all of the fields for the specified book except for
@@ -39,7 +45,7 @@ public class Books extends ResourceBase{
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getCount() {
-		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DB db = connectionManager.getConnection();
 		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBCursor cursor = coll.find(QueryCriteria.getByUser(getUserUuid()));
 		
@@ -59,7 +65,7 @@ public class Books extends ResourceBase{
 	 * @return the json representation of the document
 	 */
 	private String getDetail(final String dbBookId) {
-		DB db = ConnectionManagerFactory.getFactory().getConnection();
+		DB db = connectionManager.getConnection();
 		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBObject obj = coll.findOne(QueryCriteria.getById(dbBookId));
 		
