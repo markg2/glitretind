@@ -10,6 +10,10 @@ import com.sun.jersey.api.core.PackagesResourceConfig;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 
+/**
+ * This implementation is based on work found on:
+ * https://sites.google.com/a/athaydes.com/renato-athaydes//posts/jersey_guice_rest_api 
+ */
 public class MainModule extends GuiceServletContextListener {
 
 	 @Override
