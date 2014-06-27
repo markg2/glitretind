@@ -13,6 +13,11 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 
+/**
+ * Thank you:
+ * http://fabiostrozzi.eu/2011/03/27/junit-tests-easy-guice/
+ * @author Fabio Strozzi
+ */
 public class GuiceJunitRunner extends BlockJUnit4ClassRunner {
     private Injector injector;
  
