@@ -2,12 +2,10 @@ package com.olafrye.resource;
 
 import java.util.Iterator;
 
-import com.google.inject.Inject;
 import com.mongodb.BasicDBList;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import com.olafrye.ConnectionManagerFactory;
 import com.olafrye.QueryCriteria;
 import com.olafrye.Server;
 import com.olafrye.TableName;

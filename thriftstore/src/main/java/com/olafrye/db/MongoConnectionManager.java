@@ -5,7 +5,6 @@ import java.net.UnknownHostException;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.olafrye.ConnectionManagerFactory;
 
 public class MongoConnectionManager implements ConnectionManager {
 	public static final String DATABASE_NAME = "glitretind";
@@ -42,8 +41,6 @@ public class MongoConnectionManager implements ConnectionManager {
 		DB db = null;
 		if (mongoClient != null) {
 			db = mongoClient.getDB(DATABASE_NAME);
-			ConnectionManagerFactory.getFactory().register(db);
-			System.out.println("Startup servlet invoked successfully.");
 		}
 		
 		return db;
