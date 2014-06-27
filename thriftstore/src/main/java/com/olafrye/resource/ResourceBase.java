@@ -17,12 +17,8 @@ public class ResourceBase {
 	protected static String USER_PAULA = "Paula";
 	protected static String USER_ID = null;
 
-	protected final ConnectionManager connectionManager;
+	protected ConnectionManager connectionManager;
 	
-	@Inject
-	ResourceBase(ConnectionManager connectionManager) {
-		this.connectionManager = connectionManager;
-	}
 	
 	/**
 	 * TODO: this method goes away once OAuth is working.  It is here merely to

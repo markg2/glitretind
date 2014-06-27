@@ -20,9 +20,9 @@ import com.olafrye.db.ConnectionManager;
 @Path("/books")
 public class Books extends ResourceBase {
 
+	@Inject
 	Books(ConnectionManager connectionManager) {
-		super(connectionManager);
-		// TODO Auto-generated constructor stub
+		this.connectionManager = connectionManager;
 	}
 
 	/**

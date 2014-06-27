@@ -4,10 +4,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.olafrye.MainModule;
-
 /**
  * Servlet implementation class Startup
  */
@@ -30,8 +26,6 @@ public class Startup extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-	    Injector injector = Guice.createInjector(new MainModule());
-
 	}
 
 }

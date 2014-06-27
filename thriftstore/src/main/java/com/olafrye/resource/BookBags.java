@@ -26,9 +26,9 @@ import com.olafrye.db.ConnectionManager;
 @Path("/collections")
 public class BookBags extends ResourceBase {
 	
+	@Inject
 	BookBags(ConnectionManager connectionManager) {
-		super(connectionManager);
-		// TODO Auto-generated constructor stub
+		this.connectionManager = connectionManager;
 	}
 
 	/**
