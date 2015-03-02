@@ -1,4 +1,4 @@
-package com.olafrye;
+package com.quietsage;
 
 import com.mongodb.BasicDBObject;
 

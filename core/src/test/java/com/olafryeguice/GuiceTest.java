@@ -5,11 +5,12 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import com.google.inject.Inject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
-import com.olafrye.TableName;
 import com.olafryeguice.GuiceJunitRunner.GuiceModules;
+import com.quietsage.TableName;
 
 @RunWith(GuiceJunitRunner.class) 
 @GuiceModules({ MainModule.class })

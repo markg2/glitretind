@@ -15,20 +15,20 @@
   </filter-mapping>  
 
   <listener>
-    <listener-class>com.olafrye.db.DbModule</listener-class>
+    <listener-class>com.quietsage.db.DbModule</listener-class>
   </listener>
 
   <servlet>
   	<servlet-name>hello</servlet-name>
   	<display-name>hello</display-name>
   	<description></description>
-  	<servlet-class>com.olafrye.servlet.hello</servlet-class>
+  	<servlet-class>com.quietsage.servlet.hello</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>Startup</servlet-name>
   	<display-name>Startup</display-name>
   	<description></description>
-  	<servlet-class>com.olafrye.servlet.Startup</servlet-class>
+  	<servlet-class>com.quietsage.servlet.Startup</servlet-class>
   	<load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>

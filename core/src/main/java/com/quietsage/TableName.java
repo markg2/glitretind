@@ -1,4 +1,4 @@
-package com.olafrye;
+package com.quietsage;
 
 public class TableName {
 	public static String COLLECTIONS = "collections";

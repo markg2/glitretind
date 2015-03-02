@@ -1,4 +1,4 @@
-package com.olafrye.servlet;
+package com.quietsage.servlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

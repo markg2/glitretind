@@ -1,4 +1,4 @@
-package com.olafrye.db;
+package com.quietsage.db;
 
 import com.mongodb.DB;
 

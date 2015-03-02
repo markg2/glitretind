@@ -1,4 +1,4 @@
-package com.olafrye.resource;
+package com.quietsage.resource;
 
 import java.util.Iterator;
 
@@ -6,10 +6,10 @@ import com.mongodb.BasicDBList;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import com.olafrye.QueryCriteria;
-import com.olafrye.Server;
-import com.olafrye.TableName;
-import com.olafrye.db.ConnectionManager;
+import com.quietsage.QueryCriteria;
+import com.quietsage.Server;
+import com.quietsage.TableName;
+import com.quietsage.db.ConnectionManager;
 
 public class ResourceBase {
 	protected static String USER_PAULA = "Paula";

@@ -1,4 +1,4 @@
-package com.olafrye;
+package com.quietsage;
 
 import org.junit.*;
 
@@ -12,8 +12,8 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.olafrye.QueryCriteria;
-import com.olafrye.TableName;
+import com.quietsage.QueryCriteria;
+import com.quietsage.TableName;
 
 public class BookListTest {
 	private static String USER_PAULA = "Paula";

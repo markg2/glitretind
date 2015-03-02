@@ -1,4 +1,4 @@
-package com.olafrye.db;
+package com.quietsage.db;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -21,7 +21,7 @@ public class DbModule extends GuiceServletContextListener {
 			 protected void configureServlets() {
 				 bind(ConnectionManager.class).to(MongoConnectionManager.class);
 
-                 ResourceConfig rc = new PackagesResourceConfig( "com.olafrye.resource" );
+                 ResourceConfig rc = new PackagesResourceConfig( "com.quietsage.resource" );
                  for ( Class<?> resource : rc.getClasses() ) {
                 	 bind( resource );
                  }

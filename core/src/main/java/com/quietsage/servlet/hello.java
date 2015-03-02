@@ -1,4 +1,4 @@
-package com.olafrye.servlet;
+package com.quietsage.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

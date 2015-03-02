@@ -1,4 +1,4 @@
-package com.olafrye;
+package com.quietsage;
 
 import java.net.UnknownHostException;
 import java.util.Set;
@@ -10,7 +10,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.olafrye.TableName;
+import com.quietsage.TableName;
 
 public class BookListData {
 	public static final String DATABASE_URI = "mongodb://bworm:ouat@ds033828.mongolab.com:33828/glitretind";

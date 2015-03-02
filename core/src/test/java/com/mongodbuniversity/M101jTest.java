@@ -1,7 +1,6 @@
 package com.mongodbuniversity;
 
 import java.net.UnknownHostException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,8 +12,6 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.olafrye.QueryCriteria;
 
 public class M101jTest {
 	public static final String DATABASE_URI = "localhost";

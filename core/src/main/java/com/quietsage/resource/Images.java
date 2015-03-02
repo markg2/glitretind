@@ -1,4 +1,4 @@
-package com.olafrye.resource;
+package com.quietsage.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
