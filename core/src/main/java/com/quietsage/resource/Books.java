@@ -69,8 +69,10 @@ public class Books extends ResourceBase {
 		DBCollection coll = db.getCollection(TableName.BOOKS);
 		DBObject obj = coll.findOne(QueryCriteria.getById(dbBookId));
 		
-		obj.put("href", Server.getBaseUrl() +"/books/" + dbBookId);
-		replaceCollectionUuidsWObjRefs(obj);
+		if (obj != null) {
+			obj.put("href", Server.getBaseUrl() +"/books/" + dbBookId);
+			replaceCollectionUuidsWObjRefs(obj);
+		}
 
 		return obj != null ? obj.toString() : "{'notFound':'" + dbBookId + "'}";
 	}

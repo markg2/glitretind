@@ -29,7 +29,7 @@ public class M101jTest {
 		> db.images.count()
 		89737
 	 */
-	@Test
+//	@Test
 	public void final7() {
 		if (_mongoClient == null) {
 			try {
@@ -62,7 +62,7 @@ public class M101jTest {
 	
 	
 	//  x = {"animal":"giraffe"}
-	@Test
+//	@Test
 	public void testFinal8() {
 		try {
 			if (_mongoClient == null) {

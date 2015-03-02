@@ -52,7 +52,7 @@
 	</dependency>
   </dependencies>
   <build>
-    <finalName>thriftstore</finalName>
+    <finalName>readinglist</finalName>
   </build>
   <artifactId>readinglist</artifactId>
 </project>
